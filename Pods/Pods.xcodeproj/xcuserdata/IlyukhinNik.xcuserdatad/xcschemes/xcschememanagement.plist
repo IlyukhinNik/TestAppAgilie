@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TestAppAgilie.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,15 +29,45 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TPKeyboardAvoiding.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>041917FA882950F81B98FCDE01FF5E23</key>
+		<key>175B076ED45EB1A3E40F58BA14036467</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1ABEAB5CD17C776E8518AB146C49479C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>437F28C6F44AD8E9A29C227C81692CB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5DFF5D48DF34F9D385B8A6279E81D385</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD68C3AF7EF3BCCF9A1664D2455C4C41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C95C45974D77E3E41FE9D2A80E093179</key>
 		<dict>
 			<key>primary</key>
 			<true/>
