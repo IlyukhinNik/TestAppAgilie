@@ -11,6 +11,8 @@
 		68D631C190E3B441067CB9C6 /* libPods-TestAppAgilieUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D9D2698DC7E6F6EA0E83A9 /* libPods-TestAppAgilieUITests.a */; };
 		AACD159BB41F2D7E90BB97BD /* libPods-TestAppAgilie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8214622CC3C32161632D8806 /* libPods-TestAppAgilie.a */; };
 		E368D6FE1E420F620051CC0F /* GIphyAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D6FD1E420F620051CC0F /* GIphyAPIManager.m */; };
+		E368D7021E42387B0051CC0F /* GifItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D7011E42387B0051CC0F /* GifItem.m */; };
+		E368D7051E4260B20051CC0F /* GifModels.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D7041E4260B20051CC0F /* GifModels.m */; };
 		E37193811E40B545008ABC51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E37193801E40B545008ABC51 /* main.m */; };
 		E37193841E40B545008ABC51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E37193831E40B545008ABC51 /* AppDelegate.m */; };
 		E37193871E40B545008ABC51 /* TestAppAgilie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E37193851E40B545008ABC51 /* TestAppAgilie.xcdatamodeld */; };
@@ -52,6 +54,10 @@
 		E368D6FC1E420F620051CC0F /* GIphyAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GIphyAPIManager.h; sourceTree = "<group>"; };
 		E368D6FD1E420F620051CC0F /* GIphyAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GIphyAPIManager.m; sourceTree = "<group>"; };
 		E368D6FF1E4211DC0051CC0F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		E368D7001E42387B0051CC0F /* GifItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifItem.h; sourceTree = "<group>"; };
+		E368D7011E42387B0051CC0F /* GifItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifItem.m; sourceTree = "<group>"; };
+		E368D7031E4260B20051CC0F /* GifModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifModels.h; sourceTree = "<group>"; };
+		E368D7041E4260B20051CC0F /* GifModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifModels.m; sourceTree = "<group>"; };
 		E371937C1E40B545008ABC51 /* TestAppAgilie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAppAgilie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37193801E40B545008ABC51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E37193821E40B545008ABC51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,6 +129,8 @@
 		E368D6F81E420B330051CC0F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E368D7061E4263360051CC0F /* GifItem */,
+				E368D7071E42633D0051CC0F /* GifModels */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -134,6 +142,24 @@
 				E368D6FD1E420F620051CC0F /* GIphyAPIManager.m */,
 			);
 			name = GiphyAPIManager;
+			sourceTree = "<group>";
+		};
+		E368D7061E4263360051CC0F /* GifItem */ = {
+			isa = PBXGroup;
+			children = (
+				E368D7001E42387B0051CC0F /* GifItem.h */,
+				E368D7011E42387B0051CC0F /* GifItem.m */,
+			);
+			name = GifItem;
+			sourceTree = "<group>";
+		};
+		E368D7071E42633D0051CC0F /* GifModels */ = {
+			isa = PBXGroup;
+			children = (
+				E368D7031E4260B20051CC0F /* GifModels.h */,
+				E368D7041E4260B20051CC0F /* GifModels.m */,
+			);
+			name = GifModels;
 			sourceTree = "<group>";
 		};
 		E37193731E40B544008ABC51 = {
@@ -484,8 +510,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E37193841E40B545008ABC51 /* AppDelegate.m in Sources */,
+				E368D7021E42387B0051CC0F /* GifItem.m in Sources */,
 				E37193811E40B545008ABC51 /* main.m in Sources */,
 				E368D6FE1E420F620051CC0F /* GIphyAPIManager.m in Sources */,
+				E368D7051E4260B20051CC0F /* GifModels.m in Sources */,
 				E37193871E40B545008ABC51 /* TestAppAgilie.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

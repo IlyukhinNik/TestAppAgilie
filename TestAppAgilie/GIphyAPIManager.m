@@ -9,8 +9,6 @@
 #import "GIphyAPIManager.h"
 #import "Defines.h"
 
-NSString * const kGiphyPublicAPIKey = @"dc6zaTOxFJmzC";
-
 @implementation GIphyAPIManager
 
 + (AFHTTPSessionManager *)manager
@@ -23,7 +21,7 @@ NSString * const kGiphyPublicAPIKey = @"dc6zaTOxFJmzC";
     return _manager;
 }
 
--(void) searchGifWithParams: (NSDictionary*) params complete:(void (^)(id responseObject, NSError *error))complete{
++(void) searchGifWithParams: (NSDictionary*) params complete:(void (^)(id responseObject, NSError *error))complete{
     NSMutableDictionary* currentParams = [params mutableCopy];
     
     [currentParams setObject:GIPHY_API_KEY forKey:@"api_key"];
@@ -49,7 +47,7 @@ NSString * const kGiphyPublicAPIKey = @"dc6zaTOxFJmzC";
 
 
 
--(void) fileDownload:(NSString*) url
++(void) fileDownload:(NSString*) url
     progressDownload: (void(^)(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)) progressDownload complete:(void (^)(id responseObject, NSError *error))complete
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
