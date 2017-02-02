@@ -7,6 +7,7 @@ pod 'AFNetworking', '~> 2.4.1'
 pod 'SDWebImage', '~>3.7'
 pod 'TPKeyboardAvoiding', '~> 1.2.10'
 pod 'MBProgressHUD', '~> 0.9.1'
+pod 'FLAnimatedImage', '~> 1.0'
 
   target 'TestAppAgilieTests' do
     inherit! :search_paths

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vC3-pB-5Vb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
-        <!--View Controller-->
+        <!--Search Gifs-->
         <scene sceneID="1dq-Dp-LSb">
             <objects>
-                <viewController id="VAl-zA-I2c" sceneMemberID="viewController">
+                <viewController id="VAl-zA-I2c" customClass="SearchGifsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Oox-lK-sML"/>
                         <viewControllerLayoutGuide type="bottom" id="mAk-UU-kpq"/>
@@ -34,31 +34,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bdg-Sw-fPQ">
-                                <frame key="frameInset" minY="123" width="375" height="544"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kN7-EQ-NxN">
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bdg-Sw-fPQ">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Gbn-ob-lgT">
-                                    <size key="itemSize" width="90" height="90"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="Gbn-ob-lgT">
+                                    <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ob0-Hl-cae">
-                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GifCell" id="ob0-Hl-cae" customClass="GifCollectionViewCell">
+                                        <rect key="frame" x="5" y="5" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JQl-lx-GQh" customClass="FLAnimatedImageView"/>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="JQl-lx-GQh" firstAttribute="top" secondItem="ob0-Hl-cae" secondAttribute="top" id="48R-el-d9r"/>
+                                            <constraint firstAttribute="bottom" secondItem="JQl-lx-GQh" secondAttribute="bottom" id="51J-kI-pWr"/>
+                                            <constraint firstAttribute="trailing" secondItem="JQl-lx-GQh" secondAttribute="trailing" id="JcW-Mu-Xdz"/>
+                                            <constraint firstItem="JQl-lx-GQh" firstAttribute="leading" secondItem="ob0-Hl-cae" secondAttribute="leading" id="JwW-6w-1iP"/>
+                                        </constraints>
+                                        <size key="customSize" width="100" height="100"/>
+                                        <connections>
+                                            <outlet property="imageViewGif" destination="JQl-lx-GQh" id="H4z-SV-n2e"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="VAl-zA-I2c" id="2RK-sN-eS0"/>
+                                    <outlet property="delegate" destination="VAl-zA-I2c" id="ta5-zO-XRI"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kN7-EQ-NxN" firstAttribute="leading" secondItem="bak-sL-RmI" secondAttribute="leading" id="1V2-YW-rt6"/>
+                            <constraint firstItem="Bdg-Sw-fPQ" firstAttribute="bottom" secondItem="mAk-UU-kpq" secondAttribute="top" id="B8d-fG-4d5"/>
+                            <constraint firstItem="kN7-EQ-NxN" firstAttribute="trailing" secondItem="Bdg-Sw-fPQ" secondAttribute="trailing" id="CbR-0w-YEp"/>
+                            <constraint firstItem="Bdg-Sw-fPQ" firstAttribute="top" secondItem="kN7-EQ-NxN" secondAttribute="bottom" id="HV6-Qm-Nvb"/>
+                            <constraint firstItem="kN7-EQ-NxN" firstAttribute="top" secondItem="Oox-lK-sML" secondAttribute="bottom" id="Hq4-DU-9il"/>
+                            <constraint firstAttribute="trailing" secondItem="kN7-EQ-NxN" secondAttribute="trailing" id="Zgq-h1-UWe"/>
+                            <constraint firstItem="kN7-EQ-NxN" firstAttribute="leading" secondItem="Bdg-Sw-fPQ" secondAttribute="leading" id="fUI-Hy-zRY"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="WaJ-V5-K1D"/>
+                    <navigationItem key="navigationItem" title="Search Gifs" id="WaJ-V5-K1D"/>
+                    <connections>
+                        <outlet property="collectionViewGifs" destination="Bdg-Sw-fPQ" id="XJe-rc-c7s"/>
+                        <outlet property="searchBarGifs" destination="kN7-EQ-NxN" id="OwN-20-PZg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMu-3R-qPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

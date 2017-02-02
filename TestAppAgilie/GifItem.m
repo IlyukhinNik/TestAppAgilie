@@ -10,7 +10,7 @@
 
 @implementation GifItem
 
-- (id) initWithServerResponse:(NSDictionary*) responseObject{
+- (id) initWithResponse:(NSDictionary*) responseObject{
     
     
     self = [super init];
@@ -23,41 +23,6 @@
     }
     
     return self;
-    
-}
-
-
-- (void) loadImageByUrl:(NSString*)url {
-
-    [GIphyAPIManager fileDownload:url progressDownload:^(NSUInteger bytesRead, long long totalRead, long long expectedToRead) {
-        
-        if ([self.delegate respondsToSelector:@selector(progressLoadImage:expectedToRead:)])
-            {
-                [self.delegate progressLoadImage: totalRead expectedToRead: expectedToRead];
-            }
-        
-        } complete:^(id responseObject, NSError *error) {
-
-        if(error)
-        {
-            if ([self.delegate respondsToSelector:@selector(errorResponds:)])
-            {
-                
-                [self.delegate errorResponds:[NSString stringWithFormat:@"ERROR: %@", error.localizedDescription]];
-                
-            }
-        }
-        else
-        {
-            self.imageData = responseObject;
-            
-            if ([self.delegate respondsToSelector:@selector(getResponds:)]) {
-                
-                [self.delegate getResponds:responseObject];
-            }
-  
-        }
-    }];
     
 }
 

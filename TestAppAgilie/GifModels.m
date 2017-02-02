@@ -17,8 +17,7 @@
     self = [super init];
     if (self) {
         
-        self.limit = 25;
-        
+        self.limit = 15;
         self.offset = 0;
         
     }
@@ -40,12 +39,7 @@
         }
         else
         {
-            
-            
-            
-            
-            
-            
+ 
             if ([responseObject objectForKey:@"pagination"]) {
                 
                 NSDictionary* paginationDict = [responseObject objectForKey:@"pagination"];
@@ -78,7 +72,6 @@
                                 
                                 GifItem* gifItem = [[GifItem alloc] initWithResponse:originalDict];
                                 
-                                [gifItem loadImage:gifItem.url];
                                 
                                 [gifArray addObject:gifItem];
                             }

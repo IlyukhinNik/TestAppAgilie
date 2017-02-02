@@ -11,8 +11,6 @@
 
 @protocol GifItemDelegate <NSObject>
 
--(void) progressLoadImage:(long long) totalRead expectedToRead:(long long) expectedToRead;
-
 -(void) getResponds:(NSData*) imageData;
 
 -(void) errorResponds:(NSString*) error;
@@ -31,7 +29,6 @@
 
 - (id) initWithResponse:(NSDictionary*) responseObject;
 
-- (void) loadImage:(NSString*)url;
 
 
 @end

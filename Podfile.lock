@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
   - MBProgressHUD (0.9.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
@@ -28,16 +29,18 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.4.1)
+  - FLAnimatedImage (~> 1.0)
   - MBProgressHUD (~> 0.9.1)
   - SDWebImage (~> 3.7)
   - TPKeyboardAvoiding (~> 1.2.10)
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   TPKeyboardAvoiding: e5ce146b313de063957bfa75a13f1e9b0ff18ab7
 
-PODFILE CHECKSUM: 7fe62c940f58bc6799ce146710e66478b57fd3c6
+PODFILE CHECKSUM: 7cb697fe5a6d3d5348dc30cdc0f93e766630223c
 
 COCOAPODS: 1.2.0
