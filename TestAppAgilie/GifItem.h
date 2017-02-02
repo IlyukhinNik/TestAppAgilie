@@ -9,23 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "GIphyAPIManager.h"
 
-@protocol GifItemDelegate <NSObject>
-
--(void) getResponds:(NSData*) imageData;
-
--(void) errorResponds:(NSString*) error;
-
-
-@end
-
-
 @interface GifItem : NSObject
 
 @property (strong, nonatomic) NSString * url;
+@property (strong, nonatomic) NSString * dateCreate;
+@property (strong, nonatomic) NSString * author;
+@property (strong, nonatomic) NSString * title;
 
-@property (strong,nonatomic) NSData* imageData;
-
-@property (nonatomic, weak) id < GifItemDelegate > delegate;
 
 - (id) initWithResponse:(NSDictionary*) responseObject;
 

@@ -13,7 +13,4 @@
 
 +(void) searchGifWithParams: (NSDictionary*) params complete:(void (^)(id responseObject, NSError *error))complete;
 
-+(void) fileDownload:(NSString*) url
-    progressDownload: (void(^)(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead)) progressDownload complete:(void (^)(id responseObject, NSError *error))complete;
-
 @end

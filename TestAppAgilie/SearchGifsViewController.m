@@ -144,6 +144,47 @@ static NSString * const reuseIdentifier = @"gifCell";
 }
 
 
+-(void)collectionView:(UICollectionView *)collectionView
+didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GifCollectionViewCell *selectedCell =
+    (GifCollectionViewCell *)[self.collectionViewGifs cellForItemAtIndexPath:indexPath];
+    GifItem *gifItem =  selectedCell.gifItem;
+    
+
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"GIF info" message:[NSString stringWithFormat:  @"Username: %@; Title:%@; DateCreate:%@;", gifItem.author, gifItem.title, gifItem.dateCreate]preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
+        //action when pressed button
+    }];
+    
+    UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"Share" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        
+        NSURL *imagePath = [NSURL URLWithString:gifItem.url];
+        NSData *animatedGif = [NSData dataWithContentsOfURL:imagePath];
+        NSArray *sharingItems = [NSArray arrayWithObjects: animatedGif, nil];
+        
+        UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+        
+        NSArray *excludeActivities = @[UIActivityTypeAirDrop,
+                                       UIActivityTypePrint,
+                                       UIActivityTypeAssignToContact,
+                                       UIActivityTypeSaveToCameraRoll,
+                                       UIActivityTypeAddToReadingList,
+                                       UIActivityTypePostToFlickr,
+                                       UIActivityTypePostToVimeo];
+        
+        activityController.excludedActivityTypes = excludeActivities;
+        
+        [self presentViewController:activityController animated:YES completion:nil];
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated: YES completion: nil];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

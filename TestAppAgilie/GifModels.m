@@ -58,26 +58,11 @@
                 
                 NSMutableArray* gifArray = [NSMutableArray array];
                 
-                for (NSDictionary* gifDict in gifDictArray) {
+                for (NSDictionary* gifDict in gifDictArray)
+                {
                     
-                    if ([gifDict objectForKey:@"images"]) {
-                        
-                        NSDictionary* imagesDict = [gifDict objectForKey:@"images"];
-                        
-                        if ([imagesDict objectForKey:@"original"]) {
-                            
-                            NSDictionary* originalDict = [imagesDict objectForKey:@"original"];
-                            
-                            if ([originalDict objectForKey:@"url"]) {
-                                
-                                GifItem* gifItem = [[GifItem alloc] initWithResponse:originalDict];
-                                
-                                
+                                GifItem* gifItem = [[GifItem alloc] initWithResponse:gifDict];
                                 [gifArray addObject:gifItem];
-                            }
-                        }
-                    }
-                    
                 }
                 
                 if ([self.delegate respondsToSelector:@selector(searchGifForTermResponds:)]) {
