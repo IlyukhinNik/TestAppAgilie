@@ -37,7 +37,7 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="kN7-EQ-NxN">
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bdg-Sw-fPQ">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Bdg-Sw-fPQ">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="Gbn-ob-lgT">
                                     <size key="itemSize" width="100" height="100"/>
@@ -94,24 +94,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMu-3R-qPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="743.20000000000005" y="127.28635682158921"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="IeU-hr-RGW">
-            <objects>
-                <viewController id="zBw-dD-9Ej" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WNq-pi-zTp"/>
-                        <viewControllerLayoutGuide type="bottom" id="xdd-Qw-zZx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Hea-80-emp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bl3-en-9V3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1482" y="134"/>
         </scene>
     </scenes>
 </document>

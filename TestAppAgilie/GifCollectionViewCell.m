@@ -18,9 +18,7 @@
     [self.imageViewGif setIndicatorStyle:UIActivityIndicatorViewStyleGray];
     
     [self.imageViewGif sd_setImageWithURL:[NSURL URLWithString:gifItem.url]];
-   
 
-    
 }
 
 @end

@@ -16,9 +16,4 @@
 @property (strong, nonatomic) NSString * author;
 @property (strong, nonatomic) NSString * title;
 
-
-- (id) initWithResponse:(NSDictionary*) responseObject;
-
-
-
 @end

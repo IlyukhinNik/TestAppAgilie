@@ -12,9 +12,10 @@
 		AACD159BB41F2D7E90BB97BD /* libPods-TestAppAgilie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8214622CC3C32161632D8806 /* libPods-TestAppAgilie.a */; };
 		E368D6FE1E420F620051CC0F /* GIphyAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D6FD1E420F620051CC0F /* GIphyAPIManager.m */; };
 		E368D7021E42387B0051CC0F /* GifItem.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D7011E42387B0051CC0F /* GifItem.m */; };
-		E368D7051E4260B20051CC0F /* GifModels.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D7041E4260B20051CC0F /* GifModels.m */; };
 		E368D70D1E4264800051CC0F /* SearchGifsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D70C1E4264800051CC0F /* SearchGifsViewController.m */; };
 		E368D7111E42B1020051CC0F /* GifCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D7101E42B1020051CC0F /* GifCollectionViewCell.m */; };
+		E368D7161E4A45F30051CC0F /* NSDictionary+Validate.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D7151E4A45F30051CC0F /* NSDictionary+Validate.m */; };
+		E368D71B1E4A46DF0051CC0F /* GiphyParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E368D71A1E4A46DF0051CC0F /* GiphyParser.m */; };
 		E37193811E40B545008ABC51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E37193801E40B545008ABC51 /* main.m */; };
 		E37193841E40B545008ABC51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E37193831E40B545008ABC51 /* AppDelegate.m */; };
 		E37193871E40B545008ABC51 /* TestAppAgilie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E37193851E40B545008ABC51 /* TestAppAgilie.xcdatamodeld */; };
@@ -58,12 +59,14 @@
 		E368D6FF1E4211DC0051CC0F /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		E368D7001E42387B0051CC0F /* GifItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifItem.h; sourceTree = "<group>"; };
 		E368D7011E42387B0051CC0F /* GifItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifItem.m; sourceTree = "<group>"; };
-		E368D7031E4260B20051CC0F /* GifModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifModels.h; sourceTree = "<group>"; };
-		E368D7041E4260B20051CC0F /* GifModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifModels.m; sourceTree = "<group>"; };
 		E368D70B1E4264800051CC0F /* SearchGifsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGifsViewController.h; sourceTree = "<group>"; };
 		E368D70C1E4264800051CC0F /* SearchGifsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGifsViewController.m; sourceTree = "<group>"; };
 		E368D70F1E42B1020051CC0F /* GifCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifCollectionViewCell.h; sourceTree = "<group>"; };
 		E368D7101E42B1020051CC0F /* GifCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifCollectionViewCell.m; sourceTree = "<group>"; };
+		E368D7141E4A45F30051CC0F /* NSDictionary+Validate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Validate.h"; sourceTree = "<group>"; };
+		E368D7151E4A45F30051CC0F /* NSDictionary+Validate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Validate.m"; sourceTree = "<group>"; };
+		E368D7191E4A46DF0051CC0F /* GiphyParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiphyParser.h; sourceTree = "<group>"; };
+		E368D71A1E4A46DF0051CC0F /* GiphyParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiphyParser.m; sourceTree = "<group>"; };
 		E371937C1E40B545008ABC51 /* TestAppAgilie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAppAgilie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E37193801E40B545008ABC51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E37193821E40B545008ABC51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -136,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				E368D7061E4263360051CC0F /* GifItem */,
-				E368D7071E42633D0051CC0F /* GifModels */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -144,8 +146,8 @@
 		E368D6F91E420B690051CC0F /* GiphyAPIManager */ = {
 			isa = PBXGroup;
 			children = (
-				E368D6FC1E420F620051CC0F /* GIphyAPIManager.h */,
-				E368D6FD1E420F620051CC0F /* GIphyAPIManager.m */,
+				E368D7121E4A43E50051CC0F /* GiphyParser */,
+				E368D7131E4A458B0051CC0F /* GiphyApiClient */,
 			);
 			name = GiphyAPIManager;
 			sourceTree = "<group>";
@@ -159,15 +161,6 @@
 			name = GifItem;
 			sourceTree = "<group>";
 		};
-		E368D7071E42633D0051CC0F /* GifModels */ = {
-			isa = PBXGroup;
-			children = (
-				E368D7031E4260B20051CC0F /* GifModels.h */,
-				E368D7041E4260B20051CC0F /* GifModels.m */,
-			);
-			name = GifModels;
-			sourceTree = "<group>";
-		};
 		E368D7081E42642F0051CC0F /* SearchGifsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,13 +171,6 @@
 			name = SearchGifsViewController;
 			sourceTree = "<group>";
 		};
-		E368D70A1E42645C0051CC0F /* DetailInfoViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = DetailInfoViewController;
-			sourceTree = "<group>";
-		};
 		E368D70E1E42B0E50051CC0F /* GifCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +178,41 @@
 				E368D7101E42B1020051CC0F /* GifCollectionViewCell.m */,
 			);
 			name = GifCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		E368D7121E4A43E50051CC0F /* GiphyParser */ = {
+			isa = PBXGroup;
+			children = (
+				E368D7191E4A46DF0051CC0F /* GiphyParser.h */,
+				E368D71A1E4A46DF0051CC0F /* GiphyParser.m */,
+			);
+			name = GiphyParser;
+			sourceTree = "<group>";
+		};
+		E368D7131E4A458B0051CC0F /* GiphyApiClient */ = {
+			isa = PBXGroup;
+			children = (
+				E368D6FC1E420F620051CC0F /* GIphyAPIManager.h */,
+				E368D6FD1E420F620051CC0F /* GIphyAPIManager.m */,
+			);
+			name = GiphyApiClient;
+			sourceTree = "<group>";
+		};
+		E368D7171E4A46520051CC0F /* NSDictionaryValidate */ = {
+			isa = PBXGroup;
+			children = (
+				E368D7141E4A45F30051CC0F /* NSDictionary+Validate.h */,
+				E368D7151E4A45F30051CC0F /* NSDictionary+Validate.m */,
+			);
+			name = NSDictionaryValidate;
+			sourceTree = "<group>";
+		};
+		E368D7181E4A46850051CC0F /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				E368D7171E4A46520051CC0F /* NSDictionaryValidate */,
+			);
+			name = Library;
 			sourceTree = "<group>";
 		};
 		E37193731E40B544008ABC51 = {
@@ -219,7 +240,7 @@
 		E371937E1E40B545008ABC51 /* TestAppAgilie */ = {
 			isa = PBXGroup;
 			children = (
-				E368D70A1E42645C0051CC0F /* DetailInfoViewController */,
+				E368D7181E4A46850051CC0F /* Library */,
 				E368D7081E42642F0051CC0F /* SearchGifsViewController */,
 				E368D6F91E420B690051CC0F /* GiphyAPIManager */,
 				E368D6F81E420B330051CC0F /* Models */,
@@ -543,14 +564,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E368D71B1E4A46DF0051CC0F /* GiphyParser.m in Sources */,
 				E368D70D1E4264800051CC0F /* SearchGifsViewController.m in Sources */,
 				E37193841E40B545008ABC51 /* AppDelegate.m in Sources */,
 				E368D7021E42387B0051CC0F /* GifItem.m in Sources */,
 				E37193811E40B545008ABC51 /* main.m in Sources */,
 				E368D6FE1E420F620051CC0F /* GIphyAPIManager.m in Sources */,
-				E368D7051E4260B20051CC0F /* GifModels.m in Sources */,
 				E37193871E40B545008ABC51 /* TestAppAgilie.xcdatamodeld in Sources */,
 				E368D7111E42B1020051CC0F /* GifCollectionViewCell.m in Sources */,
+				E368D7161E4A45F30051CC0F /* NSDictionary+Validate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

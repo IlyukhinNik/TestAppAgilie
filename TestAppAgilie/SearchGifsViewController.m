@@ -9,22 +9,22 @@
 #import "SearchGifsViewController.h"
 
 #import "GifItem.h"
-#import "GifModels.h"
 #import "MBProgressHUD.h"
 #import "GIphyAPIManager.h"
 #import "GifCollectionViewCell.h"
+#import "Defines.h"
+#import "NSDictionary+Validate.h"
+#import "GiphyParser.h"
 
-static NSString * const reuseIdentifier = @"gifCell";
 
-@interface SearchGifsViewController () <GifModelsDelegate, UICollectionViewDataSource, UISearchBarDelegate>
+@interface SearchGifsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBarGifs;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewGifs;
 
-@property(strong,nonatomic) GifModels* gifModels;
-
+@property(assign,nonatomic) NSUInteger limit;
+@property(assign, nonatomic) NSInteger offset;
 @property(strong,nonatomic) NSMutableArray* gifs;
-
 @property(assign,nonatomic) BOOL isLoading;
 
 @end
@@ -35,32 +35,46 @@ static NSString * const reuseIdentifier = @"gifCell";
     [super viewDidLoad];
     
     self.searchBarGifs.delegate = self;
-    
     self.gifs = [NSMutableArray array];
-    
-    self.gifModels = [[GifModels alloc]init];
-    
-    self.gifModels.delegate = self;
-    
     self.collectionViewGifs.alwaysBounceVertical = YES;
     
 }
 
-#pragma mark - GifModelsDelegate
-
--(void) searchGifForTermResponds:(NSMutableArray*) gifArray{
+-(void)searchGifs
+{
+    NSDictionary* params = @{@"limit": PAGE_LIMIT,
+                             @"offset": OFFSET,
+                             @"q": self.searchBarGifs.text};
     
-    [self.gifs addObjectsFromArray:gifArray];
-    
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    _isLoading = NO;
-    
-    [self.collectionViewGifs reloadData];
-    
+    [GIphyAPIManager searchGifWithParams:params complete:^(id responseObject, NSError *error) {
+        if (error)
+            [self showError:[NSString stringWithFormat:@"ERROR: %@", error.localizedDescription]];
+        else
+        {
+            if ([responseObject objectForKey:@"pagination"])
+            {
+                NSDictionary* paginationDict = [responseObject objectForKey:@"pagination"];
+                
+                if ([paginationDict objectForKey:@"offset"])
+                    self.offset =[paginationDict integerForKey:@"offset"];
+            }
+            
+            if ([responseObject objectForKey:@"data"]&&[[responseObject objectForKey:@"data"]count]>0)
+            {
+                [self.gifs addObjectsFromArray:[GiphyParser getArrayGifItems:responseObject]];
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                _isLoading = NO;
+                [self.collectionViewGifs reloadData];
+            }
+            else
+                [self showError:[NSString stringWithFormat:@"Gif with that name is not found"]
+                 ];
+        }
+    }];
 }
 
--(void) errorResponds:(NSString*) errorDescription{
+-(void) showError:(NSString*) errorDescription{
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
@@ -68,27 +82,22 @@ static NSString * const reuseIdentifier = @"gifCell";
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         NSLog(@"OK");
     }];
-
+    
     [alertController addAction:okAction];
     [self presentViewController:alertController animated: YES completion: nil];
 }
 
-#pragma mark - UICollectionViewDataSource
+#pragma mark - UICollectionView Protocol
 
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     return [self.gifs count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     GifCollectionViewCell *cell = [self.collectionViewGifs dequeueReusableCellWithReuseIdentifier:@"GifCell" forIndexPath:indexPath];
-    
-    
-    
     GifItem* gifItem = [self.gifs objectAtIndex:indexPath.row];
-    
     [cell fillWhithGif:gifItem];
     
     return cell;
@@ -96,62 +105,18 @@ static NSString * const reuseIdentifier = @"gifCell";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    int numberOfCellInRow = 3;
-    CGFloat cellWidth =  [[UIScreen mainScreen] bounds].size.width/numberOfCellInRow-7;
+    CGFloat cellWidth =  [[UIScreen mainScreen] bounds].size.width/NUMBER_CELLS_IN_ROW-7;
     return CGSizeMake(cellWidth, cellWidth);
 }
 
-
-#pragma mark - ScrollView
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGFloat offsetY = scrollView.contentOffset.y;
-    
-    CGFloat contentHeight = scrollView.contentSize.height;
-    
-    if (offsetY > contentHeight - scrollView.frame.size.height)
-    {
-        if (!_isLoading) {
-            
-            _isLoading = YES;
-            
-            [self.gifModels searchGifForTerm:self.searchBarGifs.text limit:self.gifModels.limit offset:(self.gifModels.offset+self.gifModels.limit)];
-            
-        }
-    }
-}
-
-
-#pragma mark - UISearchBarDelegate
-
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    
-    [searchBar resignFirstResponder];
-    
-    [self.gifs removeAllObjects];
-    
-    [self.collectionViewGifs reloadData];
-    
-    self.gifModels.offset = 0;
-    
-    [self.gifModels searchGifForTerm:searchBar.text limit:self.gifModels.limit offset:self.gifModels.offset];
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-}
-
-
 -(void)collectionView:(UICollectionView *)collectionView
-didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
     GifCollectionViewCell *selectedCell =
     (GifCollectionViewCell *)[self.collectionViewGifs cellForItemAtIndexPath:indexPath];
     GifItem *gifItem =  selectedCell.gifItem;
     
-
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"GIF info" message:[NSString stringWithFormat:  @"Username: %@; Title:%@; DateCreate:%@;", gifItem.author, gifItem.title, gifItem.dateCreate]preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * action) {
@@ -166,15 +131,16 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
         
         UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
         
-        NSArray *excludeActivities = @[UIActivityTypeAirDrop,
-                                       UIActivityTypePrint,
-                                       UIActivityTypeAssignToContact,
-                                       UIActivityTypeSaveToCameraRoll,
-                                       UIActivityTypeAddToReadingList,
-                                       UIActivityTypePostToFlickr,
-                                       UIActivityTypePostToVimeo];
-        
-        activityController.excludedActivityTypes = excludeActivities;
+        if ( [activityController respondsToSelector:@selector(popoverPresentationController)] )
+        {
+
+            
+            
+            
+            
+            activityController.popoverPresentationController.sourceView = selectedCell;
+            activityController.popoverPresentationController.sourceRect = selectedCell.bounds;
+        }
         
         [self presentViewController:activityController animated:YES completion:nil];
     }];
@@ -182,23 +148,52 @@ didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     [alertController addAction:cancelAction];
     [alertController addAction:okAction];
     
+    if ( [alertController respondsToSelector:@selector(popoverPresentationController)] )
+    {
+        alertController.popoverPresentationController.sourceView = selectedCell;
+        alertController.popoverPresentationController.sourceRect = selectedCell.bounds;
+    }
+    
     [self presentViewController:alertController animated: YES completion: nil];
 }
 
+#pragma mark - ScrollView
 
-- (void)didReceiveMemoryWarning {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offsetY = scrollView.contentOffset.y;
+    
+    CGFloat contentHeight = scrollView.contentSize.height;
+    
+    if (offsetY > contentHeight - scrollView.frame.size.height)
+    {
+        if (!_isLoading)
+        {
+            _isLoading = YES;
+            [self searchGifs];
+        }
+    }
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
+    [searchBar resignFirstResponder];
+    
+    [self.gifs removeAllObjects];
+    
+    [self.collectionViewGifs reloadData];
+
+    [self searchGifs];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-   
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
